@@ -3,24 +3,42 @@ import API from "../../utils/API";
 import Container from "../../components/Container";
 import Canvas from "../../components/Canvas";
 import Card from "../../components/Card";
-import PhotoList from "../../components/PhotoList";
-
-
+import { PhotoList, Item } from "../../components/PhotoList";
+import "./Main.css";
 
 class Main extends Component {
 
+    state = {
+        photos: [],
+        hexSearch: "",
+        namedSearch: ""
+    }
+
     componentDidMount() {
-        API.getPhotos("ff0000");
+        const color = "ff0000"
+        this.loadPhotos(color);
     };
 
-    render () {
+
+    loadPhotos = color => {
+        API.getPhotos(color)
+            .then(res => this.setState({ photos: res.data.data }))
+            .catch(err => console.log(err));
+    }
+
+    render() {
         return (
             <Fragment>
                 <Container>
-                    <p>Hey There</p>
                     <Canvas />
                     <Card />
-                    <PhotoList />
+                    <PhotoList>
+                        {this.state.photos.map(photo => (
+                            <div className="images" key={photo.id}>
+                                <img src={photo.assets.huge_thumb.url} alt={photo.description} />
+                            </div>
+                        ))}
+                    </PhotoList>
                 </Container>
             </Fragment>
         )

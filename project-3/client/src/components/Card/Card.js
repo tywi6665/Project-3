@@ -8,11 +8,11 @@ const Card = () => (
         <code className="card">
            <form>
                 <div className="hex">
-                    <label for="hexForm">Hex Color Code</label>
+                    <label htmlFor="hexForm">Hex Color Code</label>
                     <input className="u-full-width" type="input" placeholder="000000" id="hexForm"/>
                 </div>
                 <div className="named">
-                    <label for="namedForm">Closest Named Color</label>
+                    <label htmlFor="namedForm">Closest Named Color</label>
                     <input className="u-full-width" type="input" placeholder="black" id="namedForm"/>
                 </div>
                 <SubmitBtn />

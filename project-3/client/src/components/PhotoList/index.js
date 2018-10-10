@@ -1,1 +1,2 @@
-export { default } from "./PhotoList";
+export * from "./PhotoList";
+export * from "./Item";
