@@ -15,7 +15,7 @@ class Main extends Component {
     }
 
     componentDidMount() {
-        const color = "ff0000"
+        const color = "a9f800"
         this.loadPhotos(color);
     };
 
