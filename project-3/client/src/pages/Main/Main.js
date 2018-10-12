@@ -1,9 +1,11 @@
 import React, { Fragment, Component } from "react";
 import API from "../../utils/API";
+import Nav from "../../components/Nav";
 import Container from "../../components/Container";
 import Canvas from "../../components/Canvas";
 import Card from "../../components/Card";
-import { PhotoList, Item } from "../../components/PhotoList";
+import { PhotoList } from "../../components/PhotoList";
+import SubmitBtn from "../../components/SubmitBtn";
 import "./Main.css";
 
 class Main extends Component {
@@ -15,7 +17,7 @@ class Main extends Component {
     }
 
     componentDidMount() {
-        const color = "a9f800"
+        const color = "fb3d71"
         this.loadPhotos(color);
     };
 
@@ -26,12 +28,52 @@ class Main extends Component {
             .catch(err => console.log(err));
     }
 
+    setColor = (color) => {
+        this.setState({ hexSearch: color })
+    }
+
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+          [name]: value
+        });
+      };
+
+    handleFormSubmit = event => {
+        event.preventDefault();
+        if (this.state.hexSearch) {
+            this.loadPhotos(this.state.hexSearch)
+        }
+    };
+
     render() {
         return (
             <Fragment>
+                <Nav />
                 <Container>
-                    <Canvas />
-                    <Card />
+                    <Canvas 
+                        setColor={this.setColor}
+                    />
+                    <form>
+                        <h6>Hexidecimal Color Code</h6>
+                        <Card 
+                            value={this.state.hexSearch}
+                            onChange={this.handleInputChange}
+                            name="hexSearch"
+                            placeholder="000000"
+                        />
+                        <h6>Closest Named Color</h6>
+                        <Card 
+                            value={this.state.namedSearch}
+                            onChange={this.handleInputChange}
+                            name="namedSearch"
+                            placeholder="black"
+                        />
+                        <SubmitBtn 
+                            disabled={!(this.state.hexSearch)}
+                            onClick={this.handleFormSubmit}
+                        />
+                    </form>
                     <PhotoList>
                         {this.state.photos.map(photo => (
                             <div className="images" key={photo.id}>
@@ -43,6 +85,8 @@ class Main extends Component {
             </Fragment>
         )
     }
+
+
 
 }
 

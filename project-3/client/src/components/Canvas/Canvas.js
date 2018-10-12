@@ -3,10 +3,15 @@ import "./Canvas.css";
 import * as d3 from "d3";
 
 class Canvas extends Component {
+   state = {
+       hexSearch: ""
+   } 
+   that=this;
     render() {
+        
         return (
             <pre>
-                <canvas className="canvas u-full-width" id="canvas" width="512" height="512" />
+                <canvas onClick={() => this.props.setColor(this.state.hexSearch)} className="canvas u-full-width" id="canvas" width="512" height="512" />
             </pre>
         )
 
@@ -14,29 +19,68 @@ class Canvas extends Component {
 
     componentDidMount() {
         this.ColorWheel();
+        var self=this;
+        var canvas = document.getElementById("canvas");
+
+        function getElementPosition(obj) {
+            var left = 0, top = 0;
+            if (obj.offsetParent) {
+                do {
+                    left += obj.offsetLeft;
+                    top += obj.offsetTop;
+                } while (obj = obj.offsetParent);
+                return { x: left, y: top };
+            }
+            return undefined;
+        }
+
+        function getEventLocation(element, event) {
+            var pos = getElementPosition(element);
+
+            return {
+                x: (event.pageX - pos.x),
+                y: (event.pageY - pos.y)
+            };
+        }
+
+        function rgbToHex(r, g, b) {
+            if (r > 255 || g > 255 || b > 255)
+                throw "Invalid color component";
+            return ((r << 16) | (g << 8) | b).toString(16);
+        }
+
+        canvas.addEventListener("mousemove", function (err) {
+            var eventLocation = getEventLocation(this, err);
+
+            var context = this.getContext('2d');
+            var pixelData = context.getImageData(eventLocation.x, eventLocation.y, 1, 1).data;
+
+            var hex = ("000000" + rgbToHex(pixelData[0], pixelData[1], pixelData[2])).slice(-6);
+            console.log(hex)
+            self.setState({ hexSearch: hex });
+        });
+
     };
-    
+
     ColorWheel() {
 
-    var DEGREES_PER_RADIAN = 180 / Math.PI;
+        var DEGREES_PER_RADIAN = 180 / Math.PI;
 
-    var canvas = document.getElementById("canvas");
-    console.log(canvas);
-    var context = canvas.getContext("2d");
-    console.log(context);
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext("2d");
 
-    var bgImage = context.createImageData(canvas.width, canvas.height);
+        var bgImage = context.createImageData(canvas.width, canvas.height);
 
-    var halfWidth = Math.floor(bgImage.width / 2);
-    var halfHeight = Math.floor(bgImage.height / 2);
+        var halfWidth = Math.floor(bgImage.width / 2);
+        var halfHeight = Math.floor(bgImage.height / 2);
 
-    var radius = Math.min(halfWidth, halfHeight);
-    var radiusSquared = radius * radius;
+        var radius = Math.min(halfWidth, halfHeight);
+        var radiusSquared = radius * radius;
 
-    renderColorWheel(bgImage);
+        renderColorWheel(bgImage);
 
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.putImageData(bgImage, 0, 0);
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.putImageData(bgImage, 0, 0);
 
         function renderColorWheel(image) {
             var i, j;
@@ -76,6 +120,48 @@ class Canvas extends Component {
 
     };
 
+    // Pixel() {
+
+    //     var canvas = document.getElementById("canvas");
+
+    //     function getElementPosition(obj) {
+    //         var left = 0, top = 0;
+    //         if (obj.offsetParent) {
+    //             do {
+    //                 left += obj.offsetLeft;
+    //                 top += obj.offsetTop;
+    //             } while (obj = obj.offsetParent);
+    //             return { x: left, y: top };
+    //         }
+    //         return undefined;
+    //     }
+
+    //     function getEventLocation(element, event) {
+    //         var pos = getElementPosition(element);
+
+    //         return {
+    //             x: (event.pageX - pos.x),
+    //             y: (event.pageY - pos.y)
+    //         };
+    //     }
+
+    //     function rgbToHex(r, g, b) {
+    //         if (r > 255 || g > 255 || b > 255)
+    //             throw "Invalid color component";
+    //         return ((r << 16) | (g << 8) | b).toString(16);
+    //     }
+
+    //     canvas.addEventListener("mousemove", function (err) {
+    //         var eventLocation = getEventLocation(this, err);
+
+    //         var context = this.getContext('2d');
+    //         var pixelData = context.getImageData(eventLocation.x, eventLocation.y, 1, 1).data;
+
+    //         var hex = ("000000" + rgbToHex(pixelData[0], pixelData[1], pixelData[2])).slice(-6);
+    //         console.log(hex)
+            
+    //     });
+    // }
 }
 
 export default Canvas;

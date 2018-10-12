@@ -1,5 +1,6 @@
 import React, { Fragment, Component } from "react";
 import API from "../../utils/API";
+import Nav from "../../components/Nav";
 import Container from "../../components/Container";
 
 class Saved extends Component {
@@ -11,6 +12,7 @@ class Saved extends Component {
     render () {
         return (
             <Fragment>
+                <Nav />
                 <Container>
                     <p>Hey There</p>
                     
