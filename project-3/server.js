@@ -1,9 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes");
-const fileUpload = require("express-fileupload");
-const s3 = require("s3");
-const keys = require("./keys");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -14,6 +11,7 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+
 //Add routes, both API and view
 app.use(routes);
 
