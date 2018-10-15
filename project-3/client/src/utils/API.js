@@ -7,5 +7,14 @@ export default {
         console.log(color)
         return axios.get("/api/shutterstock/" + color);
         
+    },
+    //Queries aws
+    uploadPhoto: function(formData) {
+        console.log(formData);
+        return axios.post("api/upload", formData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        })
     }
 };

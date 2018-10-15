@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from "react";
+import React, { Component } from "react";
 import API from "../../utils/API";
 import Nav from "../../components/Nav";
 import Container from "../../components/Container";
@@ -14,6 +14,7 @@ class Main extends Component {
     state = {
         photos: [],
         hexSearch: "",
+        hex: "",
         namedSearch: ""
     }
 
@@ -22,7 +23,6 @@ class Main extends Component {
         this.loadPhotos(color);
     };
 
-
     loadPhotos = color => {
         API.getPhotos(color)
             .then(res => this.setState({ photos: res.data.data }))
@@ -30,10 +30,7 @@ class Main extends Component {
     }
 
     setColor = (color) => {
-        this.setState({ hexSearch: color })
-    }
-
-    setNamedColor = (color) => {
+        this.setState({ hexSearch: color, hex: ("#" + color) })
         var namedColor = convert.hex.keyword(color);          
         console.log(namedColor);
         this.setState({ namedSearch: namedColor })
@@ -55,7 +52,7 @@ class Main extends Component {
 
     render() {
         return (
-            <Fragment>
+            <div style={{backgroundColor: this.state.hex}}>
                 <Nav />
                 <Container>
                     <Canvas 
@@ -71,7 +68,6 @@ class Main extends Component {
                         />
                         <h6>Closest Named Color</h6>
                         <Card 
-                            onClick={() => this.setNamedColor(this.state.hexSearch)}
                             value={this.state.namedSearch}
                             onChange={this.handleInputChange}
                             name="namedSearch"
@@ -90,7 +86,7 @@ class Main extends Component {
                         ))}
                     </PhotoList>
                 </Container>
-            </Fragment>
+            </div>
         )
     }
 
