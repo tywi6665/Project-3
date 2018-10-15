@@ -7,6 +7,7 @@ import Card from "../../components/Card";
 import { PhotoList } from "../../components/PhotoList";
 import SubmitBtn from "../../components/SubmitBtn";
 import "./Main.css";
+const convert = require('color-convert');
 
 class Main extends Component {
 
@@ -30,6 +31,12 @@ class Main extends Component {
 
     setColor = (color) => {
         this.setState({ hexSearch: color })
+    }
+
+    setNamedColor = (color) => {
+        var namedColor = convert.hex.keyword(color);          
+        console.log(namedColor);
+        this.setState({ namedSearch: namedColor })
     }
 
     handleInputChange = event => {
@@ -64,6 +71,7 @@ class Main extends Component {
                         />
                         <h6>Closest Named Color</h6>
                         <Card 
+                            onClick={() => this.setNamedColor(this.state.hexSearch)}
                             value={this.state.namedSearch}
                             onChange={this.handleInputChange}
                             name="namedSearch"

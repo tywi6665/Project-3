@@ -6,6 +6,7 @@ class Canvas extends Component {
    state = {
        hexSearch: ""
    } 
+
    that=this;
     render() {
         
