@@ -39,8 +39,8 @@ var client = s3.createClient({
 app.use(fileUpload());
 
 // Post route to handle uploading a file
-app.post("/upload", function(req, res) {
-    console.log("AAAARGGGHHH")
+router.post("/upload", function(req, res) {
+    console.log("AAAARGGGHHH", req.files)
     if(!req.files) {
         return res.status(400).send("Upload was unsuccessful");
     }

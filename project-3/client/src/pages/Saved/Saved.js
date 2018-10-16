@@ -5,6 +5,7 @@ import Nav from "../../components/Nav";
 import Container from "../../components/Container";
 import Card from "../../components/Card";
 import SubmitBtn from "../../components/SubmitBtn";
+//import Dropzone from 'react-dropzone';
 
 const SWATCH_STYLES = {
     marginTop: 20,
@@ -21,7 +22,7 @@ class Saved extends Component {
     };
 
     // componentDidMount() {
-    //     API.;
+    //     console.log(this.state);
     // };
 
     uploadPhoto = (photo) => {
@@ -49,13 +50,14 @@ class Saved extends Component {
     }
 
     handleFileUpload = (event) => {
+        console.log(event.target.files)
         this.setState({ file: event.target.files });
     }
 
     handleFormSubmit = event => {
         event.preventDefault();
         const formData = new FormData();
-        formData.append("file", this.state.file);
+        formData.file = (this.state.file[0]);
         console.log(formData)   
         API.uploadPhoto(formData)
             .then(res => console.log("YEAHHHHH"))
@@ -67,7 +69,7 @@ class Saved extends Component {
             <Fragment>
                 <Nav />
                 <Container>
-                <form ref="uploadForm" onSubmit={this.handleFormSubmit}>
+                    <form ref="uploadForm" onSubmit={this.handleFormSubmit}>
                         <h6>Upload Photos</h6>
                         <Card 
                             type="file"
@@ -83,10 +85,16 @@ class Saved extends Component {
                 </Container>
                 <Container>
                     <ColorExtractor getColors={this.getColors}>
-                        <img src="#" alt="#" />
+                        <img src="./images/DSC_0115.jpg" alt="#" />
                     </ColorExtractor>
                     <div style={SWATCH_STYLES}>{this.colorSwatches()}</div>
-                </Container>
+                </Container>    
+                {/* <Container>    
+                    <ColorExtractor getColors={this.getColors}>
+                        <img src="./images/DSC_0313.jpg" alt="#" />
+                    </ColorExtractor>
+                    <div style={SWATCH_STYLES}>{this.colorSwatches()}</div>
+                </Container> */}
             </Fragment>
         );
     }

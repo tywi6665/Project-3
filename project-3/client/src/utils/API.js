@@ -11,7 +11,7 @@ export default {
     //Queries aws
     uploadPhoto: function(formData) {
         console.log(formData);
-        return axios.post("api/upload", formData, {
+        return axios.post("/api/upload", formData, {
             headers: {
                 "Content-Type": "multipart/form-data"
             }

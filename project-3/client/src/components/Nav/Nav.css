@@ -41,7 +41,8 @@ nav a:hover {
 nav a::before {
     content: "";
     display: block;
-    height: 10px;
+    height: 15px;
+    border-radius: 10px;
     width: 100%;
     background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);
     position: absolute;
