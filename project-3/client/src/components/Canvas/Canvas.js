@@ -121,48 +121,6 @@ class Canvas extends Component {
 
     };
 
-    // Pixel() {
-
-    //     var canvas = document.getElementById("canvas");
-
-    //     function getElementPosition(obj) {
-    //         var left = 0, top = 0;
-    //         if (obj.offsetParent) {
-    //             do {
-    //                 left += obj.offsetLeft;
-    //                 top += obj.offsetTop;
-    //             } while (obj = obj.offsetParent);
-    //             return { x: left, y: top };
-    //         }
-    //         return undefined;
-    //     }
-
-    //     function getEventLocation(element, event) {
-    //         var pos = getElementPosition(element);
-
-    //         return {
-    //             x: (event.pageX - pos.x),
-    //             y: (event.pageY - pos.y)
-    //         };
-    //     }
-
-    //     function rgbToHex(r, g, b) {
-    //         if (r > 255 || g > 255 || b > 255)
-    //             throw "Invalid color component";
-    //         return ((r << 16) | (g << 8) | b).toString(16);
-    //     }
-
-    //     canvas.addEventListener("mousemove", function (err) {
-    //         var eventLocation = getEventLocation(this, err);
-
-    //         var context = this.getContext('2d');
-    //         var pixelData = context.getImageData(eventLocation.x, eventLocation.y, 1, 1).data;
-
-    //         var hex = ("000000" + rgbToHex(pixelData[0], pixelData[1], pixelData[2])).slice(-6);
-    //         console.log(hex)
-            
-    //     });
-    // }
 }
 
 export default Canvas;
