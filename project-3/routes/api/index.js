@@ -5,7 +5,9 @@ const fileUpload = require("express-fileupload");
 const app = express();
 const s3 = require("s3");
 const keys = require("../../keys.js");
-var fs = require("fs");
+const fs = require("fs");
+// const AWS = require("aws-sdk");
+// const multer = require("multer");
 
 // routes
 router.get("/shutterstock/:color", function (req, res) {

@@ -12,7 +12,7 @@ class Canvas extends Component {
         
         return (
             <pre>
-                <canvas onClick={() => this.props.setColor(this.state.hexSearch)} className="canvas u-full-width" id="canvas" width="512" height="512" />
+                <canvas onClick={() => this.props.setColor(this.state.hexSearch)} className="canvas u-full-width" id="canvas" width="430" height="430" />
             </pre>
         )
 
@@ -20,7 +20,7 @@ class Canvas extends Component {
 
     componentDidMount() {
         this.ColorWheel();
-        var self=this;
+        var self = this;
         var canvas = document.getElementById("canvas");
 
         function getElementPosition(obj) {

@@ -5,7 +5,7 @@ import Nav from "../../components/Nav";
 import Container from "../../components/Container";
 import Card from "../../components/Card";
 import SubmitBtn from "../../components/SubmitBtn";
-//import Dropzone from 'react-dropzone';
+import "./Saved.css";
 
 const SWATCH_STYLES = {
     marginTop: 20,
@@ -25,22 +25,24 @@ class Saved extends Component {
     //     console.log(this.state);
     // };
 
-    uploadPhoto = (photo) => {
-
-    }
-
     colorSwatches = () => {
         const { colors } = this.state;
+        console.log(colors);
         return colors.map((color, id) => {
             return (
                 <div
+                    className="swatch"
                     key={id}
                     style={{
-                        backgroundColor: color,
-                        width: 100,
-                        height: 100
+                        backgroundColor: color
                     }}
-                />
+                > 
+                    <p
+                        style={{
+                            color: color
+                        }}
+                    >{color}</p>
+                </div>
             );
         });
     };
@@ -60,7 +62,7 @@ class Saved extends Component {
         formData.file = (this.state.file[0]);
         console.log(formData)   
         API.uploadPhoto(formData)
-            .then(res => console.log("YEAHHHHH"))
+            .then(res => console.log(res))
             .catch(err => console.log(err));
     };
 
@@ -84,10 +86,12 @@ class Saved extends Component {
                     </form>
                 </Container>
                 <Container>
-                    <ColorExtractor getColors={this.getColors}>
-                        <img src="./images/DSC_0115.jpg" alt="#" />
-                    </ColorExtractor>
-                    <div style={SWATCH_STYLES}>{this.colorSwatches()}</div>
+                    <div className="wrapper">
+                        <ColorExtractor getColors={this.getColors}>
+                            <img src="./images/DSC_0115.jpg" alt="#" />
+                        </ColorExtractor>
+                        <div style={SWATCH_STYLES}>{this.colorSwatches()}</div>
+                    </div>
                 </Container>    
                 {/* <Container>    
                     <ColorExtractor getColors={this.getColors}>

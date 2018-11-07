@@ -8,6 +8,7 @@
     "closest-css-color": "^0.1.1",
     "color-convert": "^1.9.3",
     "d3": "^5.7.0",
+    "multer": "^1.4.1",
     "node-sass": "^4.9.3",
     "react": "^16.0.0",
     "react-color-extractor": "^1.1.2",
