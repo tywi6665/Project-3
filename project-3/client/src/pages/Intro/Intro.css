@@ -1,27 +1,30 @@
-.div {
+/* .div {
     height: 100vh;
     background-color: rgb(20, 19, 19);
     position: relative;
-}
+} */
 
-/* #canvas {
+#canvas {
     position: fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-} */
+    z-index: -1;
+}
 
 .button {
     position: fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    height: 350px;
-    width: 350px;
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
     border-color: black;
+    display: none;
     animation: colorchange 10s infinite;
     animation-direction: alternate;
+    z-index: 1;
 }
 
 .link {
@@ -29,6 +32,11 @@
     font-size: 24px;
     text-align: center;
 }
+
+@keyframes fadein
+    {
+        
+    }
 
 @keyframes colorchange
     {

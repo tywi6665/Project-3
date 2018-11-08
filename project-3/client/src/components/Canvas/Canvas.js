@@ -12,7 +12,7 @@ class Canvas extends Component {
         
         return (
             <pre>
-                <canvas onClick={() => this.props.setColor(this.state.hexSearch)} className="canvas u-full-width" id="canvas" width="430" height="430" />
+                <canvas onClick={() => this.props.setColor(this.state.hexSearch)} className="canvas u-full-width" id="canvas1" width="400" height="400" />
             </pre>
         )
 
@@ -21,7 +21,7 @@ class Canvas extends Component {
     componentDidMount() {
         this.ColorWheel();
         var self = this;
-        var canvas = document.getElementById("canvas");
+        var canvas = document.getElementById("canvas1");
 
         function getElementPosition(obj) {
             var left = 0, top = 0;
@@ -67,7 +67,7 @@ class Canvas extends Component {
 
         var DEGREES_PER_RADIAN = 180 / Math.PI;
 
-        var canvas = document.getElementById("canvas");
+        var canvas = document.getElementById("canvas1");
         var context = canvas.getContext("2d");
 
         var bgImage = context.createImageData(canvas.width, canvas.height);
