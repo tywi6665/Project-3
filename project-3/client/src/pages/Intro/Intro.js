@@ -8,12 +8,12 @@ class Intro extends Component {
     render() {
         return (
             <div className="div" id="div">
+                <button className="button">
+                    <Link onClick={() => this.animation.stop()} className="link" to={"/main"}>(click)</Link>
+                </button>
                 <pre>
                     <canvas id="canvas"/>
                 </pre>
-                {/* <button className="button">
-                    <Link onClick={() => this.animation.stop()} className="link" to={"/main"}>(click)</Link>
-                </button> */}
             </div>
         )
     }
@@ -21,8 +21,8 @@ class Intro extends Component {
     componentDidMount() {
         this.animation();
         // setTimeout(() => {
-        //     this.animation.stop();
-        //     () => document.getElementById("canvas").style("display", "none");
+        //     () => this.animation.stop();
+        //     () => document.getElementById("button").style("display", "contents");
         //     this.props.history.push("/main");
         // }, 2000)
     };
@@ -224,7 +224,6 @@ class Intro extends Component {
 
         // setTimeout(() => {
         //     timer.stop();
-        //     () => document.getElementById("canvas").style("display", "none");
         //     this.props.history.push("/main");
         // }, 2000)
 

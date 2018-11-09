@@ -17,8 +17,10 @@ const SWATCH_STYLES = {
 class Saved extends Component {
 
     state = {
+        photos: ["./images/DSC_0115.jpg","./images/DSC_0313.jpg"],
         file: null,
-        colors: []
+        colors: [],
+        src: null
     };
 
     // componentDidMount() {
@@ -47,13 +49,16 @@ class Saved extends Component {
         });
     };
 
-    getColors = (colors) => {
+    getColors = colors => {
         this.setState(state => ({ colors: [...state.colors, ...colors] }));
     }
 
-    handleFileUpload = (event) => {
-        console.log(event.target.files)
-        this.setState({ file: event.target.files });
+    handleFileUpload = event => {
+        console.log(event.target)
+        this.setState({
+            file: event.target.files,
+            src: event.target.files[0].name
+        });
     }
 
     handleFormSubmit = event => {
@@ -65,6 +70,16 @@ class Saved extends Component {
             .then(res => console.log(res))
             .catch(err => console.log(err));
     };
+
+    imageClick = event => {
+        const src = event.target.getAttribute("src");
+        this.setState({
+            colors: []
+        })
+        this.setState({
+            src: src
+        });
+    }
 
     render () {
         return (
@@ -88,17 +103,17 @@ class Saved extends Component {
                 <Container>
                     <div className="wrapper">
                         <ColorExtractor getColors={this.getColors}>
-                            <img src="./images/DSC_0115.jpg" alt="#" />
+                            <img src={this.state.src} alt="#" />
                         </ColorExtractor>
                         <div style={SWATCH_STYLES}>{this.colorSwatches()}</div>
                     </div>
-                </Container>    
-                {/* <Container>    
-                    <ColorExtractor getColors={this.getColors}>
-                        <img src="./images/DSC_0313.jpg" alt="#" />
-                    </ColorExtractor>
-                    <div style={SWATCH_STYLES}>{this.colorSwatches()}</div>
-                </Container> */}
+                </Container>
+                {this.state.photos.map(photo => (
+                    <Container>    
+                        <img onClick={this.imageClick} src={photo} key={photo} alt="#" />
+                    </Container>    
+                ))}
+                   
             </Fragment>
         );
     }
