@@ -12,7 +12,7 @@ class Canvas extends Component {
         
         return (
             <pre>
-                <canvas onClick={() => this.props.setColor(this.state.hexSearch)} className="canvas u-full-width" id="canvas1" width="400" height="400" />
+                <canvas onClick={() => this.props.setColor(this.state.hexSearch)} className="canvas u-full-width" id="canvas1"/>
             </pre>
         )
 
@@ -66,11 +66,16 @@ class Canvas extends Component {
     ColorWheel() {
 
         var DEGREES_PER_RADIAN = 180 / Math.PI;
+        const width = 340;
+        const height = 340;
+        
+        const canvas = d3.select("canvas")
+            .attr("width", `${width}px`)
+            .attr("height", `${height}px`)
+        
+        var context = canvas.node().getContext("2d");
 
-        var canvas = document.getElementById("canvas1");
-        var context = canvas.getContext("2d");
-
-        var bgImage = context.createImageData(canvas.width, canvas.height);
+        var bgImage = context.createImageData(width, height);
 
         var halfWidth = Math.floor(bgImage.width / 2);
         var halfHeight = Math.floor(bgImage.height / 2);
@@ -80,7 +85,7 @@ class Canvas extends Component {
 
         renderColorWheel(bgImage);
 
-        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.clearRect(0, 0, width, height);
         context.putImageData(bgImage, 0, 0);
 
         function renderColorWheel(image) {

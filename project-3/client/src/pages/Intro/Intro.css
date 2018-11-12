@@ -14,30 +14,31 @@
 
 .button {
     position: fixed;
-    left: 90%;
-    top: 90%;
+    background-color: transparent;
+    left: 50%;
+    top: 50%;
     transform: translate(-50%, -50%);
-    height: 50px;
-    width: 50px;
-    /* display: none; */
-    border-radius: 50%;
-    border-color: black;
+    height: 100%;
+    width: 100%;
+    /* display: none;  */
+    /* border-radius: 50%; */
+    border-color: transparent;
     
-    animation: colorchange 10s infinite;
-    animation-direction: alternate;
+    /* animation: colorchange 10s infinite;
+    animation-direction: alternate; */
     z-index: 1;
 }
 
-.link {
-    text-decoration: none;
-    font-size: 24px;
-    text-align: center;
+.button:hover {
+    border-color: transparent;
 }
 
-@keyframes fadein
-    {
-
-    }
+.link {
+    color: #000;
+    text-decoration: none;
+    font-size: 12px;
+    text-align: center;
+}
 
 @keyframes colorchange
     {

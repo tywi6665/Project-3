@@ -9,7 +9,7 @@ class Intro extends Component {
         return (
             <div className="div" id="div">
                 <button className="button">
-                    <Link onClick={() => this.animation.stop()} className="link" to={"/main"}>(click)</Link>
+                    <Link onClick={() => this.animation.stop()} className="link" to={"/main"}>Click Me</Link>
                 </button>
                 <pre>
                     <canvas id="canvas"/>

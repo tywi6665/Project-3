@@ -74,9 +74,7 @@ class Saved extends Component {
     imageClick = event => {
         const src = event.target.getAttribute("src");
         this.setState({
-            colors: []
-        })
-        this.setState({
+            colors: [],
             src: src
         });
     }
