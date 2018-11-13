@@ -7,17 +7,16 @@ import Card from "../../components/Card";
 import SubmitBtn from "../../components/SubmitBtn";
 import "./Saved.css";
 
-const SWATCH_STYLES = {
+const swatchStyles = {
     marginTop: 20,
     display: "flex",
     justifyContent: "center"
-  };
-  
+};
 
 class Saved extends Component {
 
     state = {
-        photos: ["./images/DSC_0115.jpg","./images/DSC_0313.jpg"],
+        photos: ["./images/DSC_0115.jpg","./images/DSC_0313.jpg", "./images/DSC_0200.jpg"],
         file: null,
         colors: [],
         src: null
@@ -103,7 +102,7 @@ class Saved extends Component {
                         <ColorExtractor getColors={this.getColors}>
                             <img src={this.state.src} alt="#" />
                         </ColorExtractor>
-                        <div style={SWATCH_STYLES}>{this.colorSwatches()}</div>
+                        <div style={swatchStyles}>{this.colorSwatches()}</div>
                     </div>
                 </Container>
                 {this.state.photos.map(photo => (

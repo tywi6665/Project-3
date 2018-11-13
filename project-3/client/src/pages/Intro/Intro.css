@@ -4,6 +4,10 @@
     position: relative;
 } */
 
+body {
+    background-color: #000;
+}
+
 #canvas {
     position: fixed;
     left: 50%;
@@ -34,7 +38,7 @@
 }
 
 .link {
-    color: #000;
+    color: #eee;
     text-decoration: none;
     font-size: 12px;
     text-align: center;
