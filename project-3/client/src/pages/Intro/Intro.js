@@ -51,11 +51,13 @@ class Intro extends Component {
         //Layout functions that only take in a point argument
         const toGrid = (points) => gridLayout(points, pointWidth + pointMargin, width);
         const toSine = (points) => sineLayout(points, pointWidth + pointMargin, width, height);
+        const toCosine = (points) => cosineLayout(points, pointWidth + pointMargin, width, height);
+        const toTangent = (points) => tangentLayout(points, pointWidth + pointMargin, width, height);
         const toSpiral = (points) => spiralLayout(points, pointWidth + pointMargin, width, height);
         const toPhyllotaxis = (points) => phyllotaxisLayout(points, pointWidth + pointMargin, width /2, height /2);
 
         //Create an array to cycle through layouts
-        const layouts = [toSine, toPhyllotaxis, toSpiral, toPhyllotaxis, toGrid];
+        const layouts = [toSine, toCosine, toPhyllotaxis, toSpiral, toPhyllotaxis, toGrid, toTangent];
 
         //Function to draw out each layout
         function draw() {
@@ -174,6 +176,40 @@ class Intro extends Component {
             points.forEach((point, i) => {
                 point.x = (i / points.length) * (width - pointWidth);
                 point.y = amplitude * Math.sin(yScale(i)) + yOffset;
+            })
+
+            return points;
+        }
+
+        //Function for cosine layout
+        function cosineLayout(points, pointWidth, width, height) {
+            const amplitude = 0.5 * (height / 2);
+            const yOffset = height / 2;
+            const periods = 10;
+            const yScale = d3.scaleLinear()
+                .domain([0, points.length -1])
+                .range([0, periods * 2 * Math.PI / 2]);
+
+            points.forEach((point, i) => {
+                point.x = (i / points.length) * (width - pointWidth);
+                point.y = amplitude * Math.cos(yScale(i)) + yOffset;
+            })
+
+            return points;
+        }
+
+        //Function for tangent layout
+        function tangentLayout(points, pointWidth, width, height) {
+            const amplitude = 0.5 * (height / 2);
+            const yOffset = height / 2;
+            const periods = 10;
+            const yScale = d3.scaleLinear()
+                .domain([0, points.length -1])
+                .range([0, periods * 5 * Math.PI]);
+
+            points.forEach((point, i) => {
+                point.x = (i / points.length) * (width - pointWidth);
+                point.y = amplitude * Math.tan(yScale(i)) + yOffset;
             })
 
             return points;
