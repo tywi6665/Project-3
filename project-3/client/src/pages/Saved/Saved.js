@@ -16,7 +16,22 @@ const swatchStyles = {
 class Saved extends Component {
 
     state = {
-        photos: ["./images/DSC_0115.jpg","./images/DSC_0313.jpg", "./images/DSC_0200.jpg"],
+        photos: [
+            {
+                src: "./images/DSC_0115.jpg",
+                id: 1,
+                display: true
+            },
+            {
+                src: "./images/DSC_0313.jpg",
+                id: 2,
+                display: true
+            },
+            {
+                src: "./images/DSC_0200.jpg",
+                id: 3,
+                display: true
+            }],
         file: null,
         colors: [],
         src: null
@@ -34,9 +49,7 @@ class Saved extends Component {
                 <div
                     className="swatch"
                     key={id}
-                    style={{
-                        backgroundColor: color
-                    }}
+                    style={{backgroundColor: color}}
                 > 
                     <p
                         style={{
@@ -49,7 +62,9 @@ class Saved extends Component {
     };
 
     getColors = colors => {
-        this.setState(state => ({ colors: [...state.colors, ...colors] }));
+        this.setState(state => ({ 
+            colors: [...state.colors, ...colors]
+        }));
     }
 
     handleFileUpload = event => {
@@ -72,11 +87,24 @@ class Saved extends Component {
 
     imageClick = event => {
         const src = event.target.getAttribute("src");
+        const id = event.target.getAttribute("id");
         this.setState({
+            // photos: [{
+            //             display: false
+            //         }],
             colors: [],
             src: src
         });
-    }
+        // for (let i = 0; i < this.state.photos.length; i++) {
+        //     console.log(i);
+        //     if (id == this.state.photos[i].id) {
+        //         this.setState({
+        //             display : false
+        //         })
+        //     }
+        //     return
+        // }
+    };
 
     render () {
         return (
@@ -87,7 +115,6 @@ class Saved extends Component {
                         <h6>Upload Photos</h6>
                         <Card 
                             type="file"
-                            // value={this.state.url}
                             onChange={this.handleFileUpload}
                             name="sampleFile"
                         />
@@ -105,9 +132,14 @@ class Saved extends Component {
                         <div style={swatchStyles}>{this.colorSwatches()}</div>
                     </div>
                 </Container>
-                {this.state.photos.map(photo => (
+                {this.state.photos.map((photo, id) => (
                     <Container>    
-                        <img onClick={this.imageClick} src={photo} key={photo} alt="#" />
+                        <img onClick={this.imageClick} 
+                            src={photo.src}
+                            id={id} 
+                            key={id} 
+                            alt="#" 
+                        />
                     </Container>    
                 ))}
                    
