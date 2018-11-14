@@ -20,11 +20,6 @@ class Intro extends Component {
 
     componentDidMount() {
         this.animation();
-        // setTimeout(() => {
-        //     () => this.animation.stop();
-        //     () => document.getElementById("button").style("display", "contents");
-        //     this.props.history.push("/main");
-        // }, 2000)
     };
 
     animation() {
@@ -142,7 +137,7 @@ class Intro extends Component {
 
         //Function to handle layout transitions
         function randomLayout(points, pointWidth, width, height) {
-            points.forEach((point, i) => {
+            points.forEach(point => {
                 point.x = Math.random() * (width - pointWidth);
                 point.y = Math.random() * (height - pointWidth);
             });
@@ -154,7 +149,6 @@ class Intro extends Component {
         function gridLayout(points, pointWidth, gridWidth) {
             const pointHeight = pointWidth;
             const pointsPerRow = Math.floor(gridWidth / pointWidth);
-            const numRows = points.length / pointsPerRow;
 
             points.forEach((point, i) => {
                 point.x = pointWidth * (i % pointsPerRow);
@@ -217,7 +211,6 @@ class Intro extends Component {
 
         //Function for spiral layout
         function spiralLayout(points, pointWidth, width, height) {
-            const amplitude = 0.3 * (height / 2);
             const xOffset = width / 2;
             const yOffset = height / 2;
             const periods = 20;
@@ -257,12 +250,6 @@ class Intro extends Component {
         toGrid(points)
         draw();
         animate(layouts[currLayout]);
-
-        // setTimeout(() => {
-        //     timer.stop();
-        //     this.props.history.push("/main");
-        // }, 2000)
-
     }
 
 

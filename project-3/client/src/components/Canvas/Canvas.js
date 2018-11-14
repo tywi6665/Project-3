@@ -65,9 +65,9 @@ class Canvas extends Component {
 
     ColorWheel() {
 
-        var DEGREES_PER_RADIAN = 180 / Math.PI;
-        const width = 340;
-        const height = 340;
+        var degreePerRadian = 180 / Math.PI;
+        const width = 700;
+        const height = 700;
         
         const canvas = d3.select("canvas")
             .attr("width", `${width}px`)
@@ -98,7 +98,7 @@ class Canvas extends Component {
                     var distanceFromOriginSquared = x * x + y * y;
                     var withinDisc = (distanceFromOriginSquared <= radiusSquared);
                     if (withinDisc) {
-                        var angleInDegrees = DEGREES_PER_RADIAN * (Math.atan2(y, x) + Math.PI);
+                        var angleInDegrees = degreePerRadian * (Math.atan2(y, x) + Math.PI);
                         var distanceFromOrigin = Math.sqrt(distanceFromOriginSquared);
 
 
@@ -113,15 +113,15 @@ class Canvas extends Component {
         function setPixelColor(image, x, y, color, alpha) {
             alpha = (alpha !== undefined ? alpha : 255);
 
-            var NUM_CHANNELS = 4;
-            var rowByteOffset = y * image.width * NUM_CHANNELS;
-            var colByteOffset = x * NUM_CHANNELS;
-            var pixelByteOffset = rowByteOffset + colByteOffset;
+            var numChannels = 4;
+            var rowOffset = y * image.width * numChannels;
+            var colOffset = x * numChannels;
+            var pixelOffset = rowOffset + colOffset;
 
-            image.data[pixelByteOffset + 0] = color.r;
-            image.data[pixelByteOffset + 1] = color.g;
-            image.data[pixelByteOffset + 2] = color.b;
-            image.data[pixelByteOffset + 3] = alpha;
+            image.data[pixelOffset + 0] = color.r;
+            image.data[pixelOffset + 1] = color.g;
+            image.data[pixelOffset + 2] = color.b;
+            image.data[pixelOffset + 3] = alpha;
         }
 
     };
