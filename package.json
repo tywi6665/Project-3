@@ -2,7 +2,7 @@
   "name": "project-3",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "node server.js",
   "engines": {
     "npm": "6.4.1",
     "node": "10.10.0"
