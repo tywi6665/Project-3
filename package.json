@@ -1,5 +1,5 @@
 {
-  "name": "project-3",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -15,7 +15,8 @@
     "seed": "node scripts/seedDB.js",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "cd client/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+    "heroku-postbuild": "npm build",
+    "web": "npm start:prod"
   },
   "author": "",
   "license": "ISC",
