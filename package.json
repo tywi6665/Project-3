@@ -25,6 +25,8 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.11.0",
     "aws-sdk": "^2.350.0",
     "axios": "^0.16.2",
     "event-stream": "^4.0.1",
